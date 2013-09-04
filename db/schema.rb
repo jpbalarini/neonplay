@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904172827) do
+ActiveRecord::Schema.define(:version => 20130904214710) do
 
   create_table "bars", :force => true do |t|
     t.string   "name",       :default => "", :null => false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130904172827) do
     t.decimal  "price",      :precision => 8, :scale => 2
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
+    t.integer  "length",                                   :default => 0,  :null => false
   end
 
 end

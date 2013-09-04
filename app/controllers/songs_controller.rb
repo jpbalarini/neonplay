@@ -6,14 +6,9 @@ class SongsController < ApplicationController
 
   # POST /songs
   def create
-    # Get song params
-    title = params[:title]
-    artist = params[:artist]
-    album = params[:album]
-    price = params[:price]
 
     # Create song
-    song = Song.new(:title => title, :artist => artist, :album => album, :price => price)
+    song = Song.new(params[:song])
     # Try to save song to db
     if song.save
       # If all validations pass

@@ -5,11 +5,9 @@ class BarsController < ApplicationController
 
   # POST /bars
   def create
-    # Get bar params
-    name = params[:name]
 
     # Create bar
-    bar = Bar.new(:name => name)
+    bar = Bar.new(params[:bar])
     # Try to save bar to db
     if bar.save
       # If all validations pass

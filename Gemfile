@@ -6,6 +6,7 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'neon_play_jukebox', :git => "https://github.com/neonroots/neonplay-jukebox-client.git"
 
 
 # Gems used only for assets and not required
