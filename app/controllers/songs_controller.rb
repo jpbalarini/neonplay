@@ -27,7 +27,31 @@ class SongsController < ApplicationController
       end
     else
       # Warn user
-      render json: "Your admin_token is not valid or it is not present", :status => :unauthorized
+      render json: {:error => "Your admin_token is not valid or it is not present"}, :status => :unauthorized
+    end
+  end
+
+  # GET /songs
+  def index
+    # Get admin_token header
+    admin_token = request.headers['admin_token']
+    # Get bar_token header
+    bar_token = request.headers['bar_token']
+
+    if admin_token.present? && admin_token == ENV['ADMIN_TOKEN']
+      # If user is admin
+      puts "-----"
+      puts "user is admin"
+      render json: Song.all.to_json, :status => :ok
+    elsif bar_token.present? && Bar.where(token: bar_token).exists?
+      # If user is bar owner
+      puts "-----"
+      puts "user is bar owner"
+      render json: Song.all.to_json, :status => :ok
+    else
+      # User has not provided authentication keys
+      # Warn user
+      render json: {:error => "Your are not authorized"}, :status => :unauthorized
     end
   end
 

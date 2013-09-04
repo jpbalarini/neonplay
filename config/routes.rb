@@ -51,7 +51,7 @@ Neonplay::Application.routes.draw do
   #root :to => 'bars#index'
 
   # Routes for songs
-  resources :songs, only: [:create] do
+  resources :songs, only: [:create, :index] do
   end
 
   # Routes for bars

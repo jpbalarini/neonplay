@@ -15,8 +15,8 @@ class BarsController < ApplicationController
       render json: bar.to_json, :status => :created
     else
       # If some validation fails
-      render json: bar.errors.to_json, :status => :unprocessable_entity
+      render json: {:error => bar.errors}, :status => :unprocessable_entity
     end
   end
-  
+
 end
