@@ -52,10 +52,16 @@ Neonplay::Application.routes.draw do
 
   # Routes for songs
   resources :songs, only: [:create, :index] do
+    collection do
+      get "on_sale"
+    end
   end
 
   # Routes for bars
   resources :bars, only: [:create] do
+    member do
+      post "songs"
+    end
   end
 
   # See how all your routes lay out with "rake routes"

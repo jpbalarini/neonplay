@@ -1,8 +1,9 @@
 class Bar < ActiveRecord::Base
-  # attr_accessible :title, :body
+  # Relations
   has_many :purchases
   has_many :songs, :through => :purchases
 
+  #Accesors
   attr_accessible :name
 
   # Validations
