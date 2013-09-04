@@ -1,12 +1,13 @@
 #encoding: utf-8
 
 class SongsController < ApplicationController
-  #render layout: false
 
   # POST /songs
   def create
+    # Get admin_token header
     admin_token = request.headers['admin_token']
 
+    # If it is authorized
     if admin_token.present? && admin_token == ENV['ADMIN_TOKEN']
       # Get song params
       title = params[:title]
@@ -25,11 +26,9 @@ class SongsController < ApplicationController
         render json: song.errors.to_json, :status => :unprocessable_entity
       end
     else
-      render json: "Your admin_token is not valid or it is not present", :status => :unprocessable_entity
+      # Warn user
+      render json: "Your admin_token is not valid or it is not present", :status => :unauthorized
     end
-
-    
-
   end
 
 end

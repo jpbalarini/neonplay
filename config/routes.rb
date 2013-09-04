@@ -48,9 +48,14 @@ Neonplay::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'bars#index'
+  #root :to => 'bars#index'
 
+  # Routes for songs
   resources :songs, only: [:create] do
+  end
+
+  # Routes for bars
+  resources :bars, only: [:create] do
   end
 
   # See how all your routes lay out with "rake routes"
