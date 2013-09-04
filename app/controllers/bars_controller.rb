@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 class BarsController < ApplicationController
-  before_filter :authorize_bar_owner, :only => [:songs]
+  before_filter :authorize_bar_owner, :only => [:songs, :jukebox]
 
   # POST /bars
   def create
@@ -22,7 +22,7 @@ class BarsController < ApplicationController
   def songs
     # Method to buy songs for a bar
     song = Song.where(:id => params[:song_id]).first()
-    bar = Bar.where(:token => request.headers['bar_token']).first()
+    bar = Bar.where(:id => params[:id]).first()
 
     if song.present? and bar.present?
       purchase = Purchase.new(:song => song, :bar => bar)
@@ -33,6 +33,42 @@ class BarsController < ApplicationController
       end
     else
       render json: {:error => "You must provide a valid bar and song"}, :status => :unprocessable_entity
+    end
+  end
+
+  #PUT /bars/:id/jukebox
+  def jukebox
+    bar = Bar.where(:id => params[:id]).first()
+
+    if bar.present?
+      jukebox = Jukebox.new(params[:jukebox])
+      jukebox.bar = bar
+      if jukebox.save
+        client = NeonPlayJukebox.connect(bar.jukebox.url)
+        client.volume(bar.jukebox.volume)
+        render json: jukebox.to_json, :status => :ok
+      else
+        render json: {:error => jukebox.errors}, :status => :unprocessable_entity
+      end
+    else
+      render json: {:error => "You must provide a valid bar"}, :status => :unprocessable_entity
+    end
+  end
+
+  # GET /bars/:id/jukebox
+  def jukebox_info
+    bar = Bar.where(:id => params[:id]).first()
+
+    if bar.present?
+      if bar.jukebox.present?
+        client = NeonPlayJukebox.connect(bar.jukebox.url)
+        result = client.state
+        render json: result.to_json, :status => :ok
+      else
+        render json: {:error => "Bar has no associated jukebox"}, :status => :unprocessable_entity
+      end
+    else
+      render json: {:error => "You must provide a valid bar"}, :status => :unprocessable_entity
     end
   end
 

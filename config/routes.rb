@@ -61,6 +61,8 @@ Neonplay::Application.routes.draw do
   resources :bars, only: [:create] do
     member do
       post "songs"
+      put "jukebox"
+      get "jukebox" => 'bars#jukebox_info'
     end
   end
 

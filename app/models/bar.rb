@@ -3,6 +3,8 @@ class Bar < ActiveRecord::Base
   has_many :purchases
   has_many :songs, :through => :purchases
 
+  has_one :jukebox
+
   #Accesors
   attr_accessible :name
 
