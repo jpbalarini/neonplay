@@ -11,15 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904160655) do
+ActiveRecord::Schema.define(:version => 20130904164359) do
+
+  create_table "bars", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "token",      :default => "", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "bars", ["name"], :name => "index_bars_on_name"
 
   create_table "songs", :force => true do |t|
-    t.string   "title"
-    t.string   "artist"
-    t.string   "album"
+    t.string   "title",                                    :default => "", :null => false
+    t.string   "artist",                                   :default => "", :null => false
+    t.string   "album",                                    :default => "", :null => false
     t.decimal  "price",      :precision => 8, :scale => 2
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
   end
 
 end
