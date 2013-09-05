@@ -6,7 +6,7 @@ class Bar < ActiveRecord::Base
   has_one :jukebox
 
   #Accesors
-  attr_accessible :name
+  attr_accessible :name, :token
 
   # Validations
   validates :name, :presence => {:message => "Please enter a name"}, :if => Proc.new { |at| at.name.blank?}

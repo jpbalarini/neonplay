@@ -1,6 +1,6 @@
 class Song < ActiveRecord::Base
   # Accesors
-  attr_accessible :title, :artist, :album, :price
+  attr_accessible :title, :artist, :album, :price, :length
 
   # Validations
   validates :title, :presence => {:message => "Please enter a title"}, :if => Proc.new { |at| at.title.blank?}

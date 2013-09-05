@@ -3,7 +3,7 @@ class Jukebox < ActiveRecord::Base
   belongs_to :bar
 
   # Accesors  
-  attr_accessible :url, :volume, :repeat, :bar_id
+  attr_accessible :url, :volume, :repeat, :bar_id, :playlist, :current_song_index
 
 
   # Validations

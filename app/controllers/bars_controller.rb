@@ -154,6 +154,7 @@ class BarsController < ApplicationController
           result << s.as_json
         end
 
+        # Paginate array
         result = Kaminari.paginate_array(result).page(page).per(limit)
 
         render json: result.to_json, :status => :ok
