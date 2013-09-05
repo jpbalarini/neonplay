@@ -1,5 +1,7 @@
 Neonplay app
 ==============
+Some examples using curl. Ids may be different.
+
 
 Create song
 --------------
