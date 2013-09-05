@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'pg'
 gem 'neon_play_jukebox', :git => "https://github.com/neonroots/neonplay-jukebox-client.git"
+gem 'kaminari'
 
 
 # Gems used only for assets and not required
@@ -22,24 +23,14 @@ group :assets do
 end
 
 group :development, :test do
-  gem "better_errors"
-  gem 'rspec-rails', '~> 2.0'
+  gem "better_errors"  
   gem 'binding_of_caller'
 end
 
+group :test do
+  # Pretty printed test output
+  gem 'rspec-rails', '~> 2.0'  
+  gem 'factory_girl_rails'  
+end
+
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'

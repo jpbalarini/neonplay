@@ -21,14 +21,22 @@ class SongsController < ApplicationController
 
   # GET /songs
   def index
-    # Get all songs
-    render json: Song.all.to_json, :status => :ok
+    # Get limits for pagination
+    page = params[:page]
+    limit = params[:limit]
+
+    # Get songs
+    render json: Song.page(page).per(limit).to_json, :status => :ok
   end
 
   # GET /songs/on_sale
   def on_sale
+    # Get limits for pagination
+    page = params[:page]
+    limit = params[:limit]
+
     # Get songs on sale
-    render json: Song.where(["price <= ?", 1.0]).to_json, :status => :ok
+    render json: Song.where(["price <= ?", 1.0]).page(page).per(limit).to_json, :status => :ok
   end
 
   ### PROTECTED METHODS ###

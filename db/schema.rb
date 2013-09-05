@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904233139) do
+ActiveRecord::Schema.define(:version => 20130905142541) do
 
   create_table "bars", :force => true do |t|
     t.string   "name",       :default => "", :null => false
@@ -23,13 +23,14 @@ ActiveRecord::Schema.define(:version => 20130904233139) do
   add_index "bars", ["name"], :name => "index_bars_on_name"
 
   create_table "jukeboxes", :force => true do |t|
-    t.string   "url",        :default => "",    :null => false
-    t.integer  "bar_id",                        :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "volume",     :default => 0,     :null => false
-    t.boolean  "repeat",     :default => false, :null => false
-    t.text     "playlist",   :default => ""
+    t.string   "url",                :default => "",    :null => false
+    t.integer  "bar_id",                                :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "volume",             :default => 0,     :null => false
+    t.boolean  "repeat",             :default => false, :null => false
+    t.text     "playlist",           :default => ""
+    t.integer  "current_song_index", :default => 0
   end
 
   add_index "jukeboxes", ["bar_id"], :name => "index_jukeboxes_on_bar_id"
