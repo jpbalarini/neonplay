@@ -63,6 +63,9 @@ Neonplay::Application.routes.draw do
       post "songs"
       put "jukebox"
       get "jukebox" => 'bars#jukebox_info'
+      post "jukebox/songs" => 'bars#add_song'
+      get "jukebox/songs" => 'bars#jukebox_songs'
+      post "songs_callback"
     end
   end
 
