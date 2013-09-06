@@ -2,6 +2,10 @@ Neonplay app
 ==============
 Some examples using curl. Ids may be different.
 Two files must be created for correct execution. Database.yml and local_env.yml (under /config). The second file stores environmental variables.
+To create and initialize database run:
+```
+rake db:setup
+```
 
 Example local_env.yml file
 ```
