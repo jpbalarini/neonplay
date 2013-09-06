@@ -4,11 +4,12 @@ Some examples using curl. Ids may be different.
 Two files must be created for correct execution. Database.yml and local_env.yml (under /config). The second file stores environmental variables.
 
 Example local_env.yml file
+```
 # Token used for admin authentication
 # Available as ENV["ADMIN_TOKEN"]
 ADMIN_TOKEN: 'ThisIsNeonPlayToken'
 NEONPLAY_URL: 'http://localhost:3000'
-
+```
 
 Create song
 --------------
